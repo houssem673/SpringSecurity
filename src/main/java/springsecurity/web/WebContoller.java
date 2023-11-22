@@ -1,17 +1,21 @@
 package springsecurity.web;
 
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import springsecurity.config.AdminOnly;
+import springsecurity.service.SecretService;
 
 @Controller
 public class WebContoller {
 
+private final SecretService secretService;
 
+    public WebContoller(SecretService secretService) {
+        this.secretService = secretService;
+    }
 
     @GetMapping("/")
     public String index(){
@@ -34,6 +38,7 @@ public class WebContoller {
     @AdminOnly
     @GetMapping("/secret")
     public String indexSecret(){
+        secretService.foo();
         return "secret";
     }
 
