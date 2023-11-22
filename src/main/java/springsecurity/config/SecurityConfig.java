@@ -19,7 +19,6 @@ public class SecurityConfig {
 public SecurityFilterChain config(HttpSecurity chainBuilder) throws Exception {
     chainBuilder.authorizeHttpRequests(
             configurer -> configurer
-                    .requestMatchers("/secret").hasRole("ADMIN")
                     .requestMatchers("/", "/public", "/css/*").permitAll()
                     .anyRequest().authenticated()
     )

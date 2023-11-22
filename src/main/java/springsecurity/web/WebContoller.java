@@ -1,10 +1,12 @@
 package springsecurity.web;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import springsecurity.config.AdminOnly;
 
 @Controller
 public class WebContoller {
@@ -27,6 +29,9 @@ public class WebContoller {
         model.addAttribute("name",loginName);
         return "private";
     }
+
+    // @Secured("ROLE_USER") one way of securing the method
+    @AdminOnly
     @GetMapping("/secret")
     public String indexSecret(){
         return "secret";
