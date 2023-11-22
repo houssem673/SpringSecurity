@@ -2,6 +2,7 @@ package springsecurity.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,7 +21,8 @@ public SecurityFilterChain config(HttpSecurity chainBuilder) throws Exception {
             configurer -> configurer.requestMatchers("/", "/public", "/css/*").permitAll()
                     .anyRequest().authenticated()
     )
-            .formLogin();
+            .formLogin(Customizer.withDefaults())
+            .oauth2Login(Customizer.withDefaults());
     return chainBuilder.build();
 }
 @Bean
