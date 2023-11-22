@@ -21,7 +21,7 @@ public class WebContoller {
     }
     @GetMapping("/private")
     public String indexPrivate(OAuth2AuthenticationToken oauth, Model model ){
-        System.out.println(oauth); //print login details
+       // System.out.println(oauth); //print login details
         OAuth2User user = oauth.getPrincipal();
         String loginName = user.getAttribute("login");
         model.addAttribute("name",loginName);
