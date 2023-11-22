@@ -12,10 +12,10 @@ public class SecurityConfig {
 @Bean
 public SecurityFilterChain config(HttpSecurity chainBuilder) throws Exception {
     chainBuilder.authorizeHttpRequests(
-            configurer -> configurer.requestMatchers("/","/public","/css/*").permitAll()
+            configurer -> configurer.requestMatchers("/", "/public", "/css/*").permitAll()
                     .anyRequest().authenticated()
-    );
-
+    )
+            .formLogin();
     return chainBuilder.build();
 }
 
